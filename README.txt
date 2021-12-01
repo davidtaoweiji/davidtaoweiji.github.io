@@ -1,23 +1,21 @@
-Story by HTML5 UP
+Landed by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 
 
-Say hello to Story, a brand new responsive one-pager for HTML5 UP! Inspired by my work
-on Carrd*, Story is built to be extremely modular and tweakable, and as such is entirely
-built on reusable, insanely customizable elements (like "spotlight" and "gallery") that
-can be endlessly duplicated and tweaked into whatever you need to tell your story --
-without, in many cases, touching *any* CSS. Check out index-demo.html for an interactive
-demo, and index.html for the actual template. Enjoy!
+A dark, slick, modern, responsive, adjective-drenched design built around an extremely
+dynamic landing page (scroll that mofo!). Inspired by Big Picture, another design
+of mine with a similarish feel/flow, only this time I took it waaaaaay further and
+actually made it multipurpose (versus copping out and making it a one pager like I
+did last time ;) Includes multiple pages, a bunch of pre-styled elements, and all
+its Sass sources.
 
-Demo images** courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
+Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
 you can use for pretty much whatever.
 
-PS: Delete index-demo.html and assets/js/demo.js when you're done messing with the demo
-as neither are needed in production :)
+(* = Not included)
 
-(* = my other side project -- carrd.co)
-(** = not included)
+Feedback, bug reports, and comments are not only welcome, but strongly encouraged :)
 
 AJ
 aj@lkn.io | @ajlkn
