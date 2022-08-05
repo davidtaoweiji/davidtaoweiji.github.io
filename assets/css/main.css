@@ -1587,7 +1587,6 @@ input, select, textarea {
 		display: inline-block;
 		outline: 0;
 	}
-
 		.image img {
 			display: block;
 			width: 100%;
@@ -1802,7 +1801,7 @@ input, select, textarea {
 			}
 
 			.box.feature .image {
-				position: relative;
+				/* position: relative; */
 				margin: 0;
 			}
 
