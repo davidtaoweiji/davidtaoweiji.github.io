@@ -1,260 +1,242 @@
-<!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>CR&DD Nails</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload homepage">
-		<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Firework Animation</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars */
+            background-color: #111; /* Background color for the animation */
+            display: flex; /* Center the card */
+            justify-content: center; /* Center the card */
+            align-items: center; /* Center the card */
+            height: 100vh; /* Full viewport height */
+        }
+        canvas {
+            display: block;
+        }
 
-			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
+        .birthdayCard {
+            position: fixed;
+            top: 25%;
+            left: 70%;
+            width: 350px;  /* Increased width */
+            height: 500px; /* Increased height */
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: perspective(2500px);
+            transition: 1s;
+            display: none; /* Hide by default */
+            z-index: 10; /* Ensure it appears above the canvas */
+        }
 
-						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="index.html">CR&DD Nails</a></h1>
-							</div>
+        .birthdayCard:hover {
+            transform: perspective(2500px) rotate(5deg);
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
+                        0 10px 100px rgba(0, 0, 0, 0.5);
+        }
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="heavy.html">重工款</a></li>
-									<li><a href="simple.html">简约款</a></li>
-									<li><a href="promotion.html">活动促销</a></li>
-								</ul>
-							</nav>
+        .birthdayCard:hover .cardFront {
+            transform: rotateY(-160deg);
+        }
 
-					</header>
-				</div>
+        .birthdayCard:hover .happy {
+            visibility: hidden;
+        }
 
-			<!-- Banner -->
-				<div id="banner-wrapper">
-					<div id="banner" class="box container">
-						<div class="row">
-							<div class="col-7 col-10-medium">
-								<h2>CR&DD Nails</h2>
-								<h2>开业啦</h2>
-							</div>
-							<div class="col-5 col-12-medium">
-								<ul>
-									<li><a href="#" class="button large icon solid fa-arrow-circle-right">直接发车</a></li>
-									<li><a href="promotion.html" class="button alt large icon solid fa-question-circle">开业活动</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+        .cardFront {
+            position: relative;
+            background-color: #fff;
+            width: 350px;  /* Increased width */
+            height: 500px; /* Increased height */
+            overflow: hidden;
+            transform-origin: left;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
+                        30px 0 50px rgba(0, 0, 0, 0.4);
+            transition: 0.6s;
+        }
 
-			<!-- Features -->
-				<div id="features-wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-4 col-12-medium">
+        .happy {
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+            margin: 30px;
+            background-image: linear-gradient(120deg, #ffd856 0%, #f98c6e 100%);
+            transition: 0.1s;
+        }
 
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Put something here</h2>
-												<p>Maybe here as well I think</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
+        .balloons {
+            position: absolute;
+        }
 
-							</div>
-							<div class="col-4 col-12-medium">
+        /* Adjust balloon sizes */
+        .balloon-1,
+        .balloon-2,
+        .balloon-3,
+        .balloon-4 {
+            position: absolute;
+            width: 120px; /* Increased balloon width */
+            height: 140px; /* Increased balloon height */
+            border-radius: 50%;
+        }
 
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>An interesting title</h2>
-												<p>This is also an interesting subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
+        .balloon-1 {
+            background-color: rgba(255, 40, 90, 0.7);
+            left: -20px;
+            top: 80px; /* Adjust balloon position */
+        }
 
-							</div>
-							<div class="col-4 col-12-medium">
+        .balloon-2 {
+            background-color: rgba(9, 215, 160, 0.7);
+            left: 80px;
+            top: 40px; /* Adjust balloon position */
+        }
 
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<h2>Oh, and finally ...</h2>
-												<p>Here's another intriguing subtitle</p>
-											</header>
-											<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-										</div>
-									</section>
+        .balloon-3 {
+            background-color: rgba(255, 186, 26, 0.7);
+            left: 160px;
+            top: 80px; /* Adjust balloon position */
+        }
 
-							</div>
-						</div>
-					</div>
-				</div>
+        .balloon-4 {
+            background-color: rgba(12, 122, 159, 0.7);
+            left: 240px;
+            top: 80px; /* Adjust balloon position */
+        }
 
-			<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-4 col-12-medium">
+        .balloon-1::before,
+        .balloon-2::before,
+        .balloon-3::before,
+        .balloon-4::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 180px; /* Increased height of the string */
+            background-color: #ffc848;
+            top: 140px; /* Adjust balloon string position */
+            left: 50px; /* Center the strings */
+        }
 
-								<!-- Sidebar -->
-									<div id="sidebar">
-										<section class="widget thumbnails">
-											<h3>Interesting stuff</h3>
-											<div class="grid">
-												<div class="row gtr-50">
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
-												</div>
-											</div>
-											<a href="#" class="button icon fa-file-alt">More</a>
-										</section>
-									</div>
+        /* Adjust bottom border size */
+        .balloon-1::after,
+        .balloon-2::after,
+        .balloon-3::after,
+        .balloon-4::after {
+            content: "";
+            position: absolute;
+            border-right: 9px solid transparent; /* Increased width */
+            border-left: 9px solid transparent; /* Increased width */
+            top: 139px; /* Adjust border position */
+            left: 45px; /* Center the borders */
+        }
 
-							</div>
-							<div class="col-8 col-12-medium imp-medium">
+        .cardInside {
+            position: absolute;
+            background-color: #fff;
+            width: 350px;  /* Increased width */
+            height: 500px; /* Increased height */
+            z-index: -1;
+            left: 0;
+            top: 0;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+        }
 
-								<!-- Content -->
-									<div id="content">
-										<section class="last">
-											<h2>So what's this all about?</h2>
-											<p>This is <strong>Verti</strong>, a free and fully responsive HTML5 site template by <a href="http://html5up.net">HTML5 UP</a>.
-											Verti is released under the <a href="http://html5up.net/license">Creative Commons Attribution license</a>, so feel free to use it for any personal or commercial project you might have going on (just don't forget to credit us for the design!)</p>
-											<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.</p>
-											<a href="#" class="button icon solid fa-arrow-circle-right">Continue Reading</a>
-										</section>
-									</div>
+        p {
+            font-family: "Brush Script MT", cursive;
+            margin: 40px;
+            color: #333;
+        }
 
-							</div>
-						</div>
-					</div>
-				</div>
+        .name {
+            position: absolute;
+            left: 150px;
+            top: 200px;
+            color: #333;
+        }
 
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<div class="col-3 col-6-medium col-12-small">
+        .back {
+            font-family: Tahoma, sans-serif;
+            color: #333;
+            text-align: center;
+            margin: 30px;
+            outline-color: #333;
+            outline-style: dotted;
+        }
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
+        .cardImage1 {
+            width: 100px; /* Set a specific width */
+            height: 120px; /* Set a specific height */
+            position: absolute;
+            top: 80%; /* Adjust the position vertically */
+            left: 25%; /* Center horizontally */
+            transform: translate(-50%, -50%) rotate(10deg); /* Center the image */
+            z-index: 1; /* Ensure the image is behind the text */
+            border-radius: 15px; /* Optional: Add rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add shadow */
+            display: none; /* Hide by default */
+            
+        }
+        .cardImage2 {
+            width: 130px; /* Set a specific width */
+            height: 120px; /* Set a specific height */
+            position: absolute;
+            top: 80%; /* Adjust the position vertically */
+            left: 75%; /* Center horizontally */
+            transform: translate(-50%, -50%) rotate(-15deg); /* Center the image */
+            z-index: 1; /* Ensure the image is behind the text */
+            border-radius: 15px; /* Optional: Add rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add shadow */
+            display: none; /* Hide by default */
+            
+        }
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
+        /* Show image on hover */
+        .birthdayCard:hover .cardImage1 {
+            display: block; /* Show the image on hover */
+        }
+        .birthdayCard:hover .cardImage2 {
+            display: block; /* Show the image on hover */
+        }
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
+    <!-- Birthday Card -->
+    <div class="birthdayCard">
+        <img src="pic1.jpg" alt="Birthday Celebration" class="cardImage1"> <!-- Added image -->
+        <img src="pic2.jpg" alt="Birthday Celebration" class="cardImage2"> <!-- Added image -->
+        <div class="cardFront">
+            <h3 class="happy">生日快乐</h3>
+            <div class="balloons">
+                <div class="balloon-1"></div>
+                <div class="balloon-2"></div>
+                <div class="balloon-3"></div>
+                <div class="balloon-4"></div>
+            </div>
+        </div>
+        <div class="cardInside">
+            <h3 class="back"> 生日快乐</h3>
+            <p>Dear Friend,</p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                expedita debitis esse quaerat adipisci iste illum placeat incidunt
+                reprehenderit laudantium!
+            </p>
+            <p class="name">xxx</p>
+        </div>
+    </div>
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
+    <!-- Background music -->
+    <audio id="background-music" src="birthday_songs.mp3" ></audio>
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Contact -->
-									<section class="widget contact last">
-										<h3>Contact Us</h3>
-										<ul>
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-										</ul>
-										<p>1234 Fictional Road<br />
-										Nashville, TN 00000<br />
-										(800) 555-0000</p>
-									</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
-
-			</div>
-
-		<!-- Scripts -->
-
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
 </html>
